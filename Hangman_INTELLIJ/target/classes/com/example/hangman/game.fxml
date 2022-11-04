@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.CubicCurve?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Polyline?>
+<?import javafx.scene.shape.QuadCurve?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hangman.GameController">
+   <center>
+      <VBox>
+         <children>
+            <GridPane prefHeight="41.0" prefWidth="446.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Text fx:id="displayActiveWordCount" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="143.92163372039795" GridPane.halignment="CENTER" />
+                  <Text fx:id="displayPoints" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="114.02367782592773" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+                  <Text fx:id="displaySuccess" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="114.02367782592773" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
+               </children>
+            </GridPane>
+            <AnchorPane prefHeight="530.0" prefWidth="447.0">
+               <children>
+                  <Text fx:id="displayWord" layoutX="97.0" layoutY="272.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="253.72972789406776">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+   </center>
+   <top>
+      <MenuBar fx:id="menuBar" BorderPane.alignment="CENTER">
+         <menus>
+            <Menu mnemonicParsing="false" text="Application">
+               <items>
+                  <MenuItem fx:id="menuStart" mnemonicParsing="false" onAction="#startButtonClick" text="Start" />
+                  <MenuItem fx:id="menuExit" mnemonicParsing="false" onAction="#exitButtonClick" text="Exit" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Details">
+               <items>
+                  <MenuItem fx:id="menuDictionary" mnemonicParsing="false" onAction="#menuDictionary" text="Dictionary" />
+                  <MenuItem fx:id="menuRounds" mnemonicParsing="false" onAction="#menuRounds" text="Rounds" />
+                  <MenuItem fx:id="menuSolution" mnemonicParsing="false" onAction="#menuSolution" text="Solution" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+   </top>
+   <right>
+      <VBox BorderPane.alignment="CENTER">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Possible Characters per position, probability sorted, left to right descending" />
+            <Text fx:id="possibleLetters" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="332.6512222290039" />
+         </children>
+      </VBox>
+   </right>
+   <bottom>
+      <HBox alignment="CENTER" prefHeight="82.0" prefWidth="643.0" BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane prefHeight="83.0" prefWidth="260.0">
+               <children>
+                  <Slider fx:id="inputPosition" layoutY="20.0" prefHeight="62.0" prefWidth="99.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+                  <Label layoutX="1.0" prefHeight="18.0" prefWidth="145.0" text="Choose position" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="83.0" prefWidth="247.0">
+               <children>
+                  <Label layoutX="-1.0" prefHeight="18.0" prefWidth="145.0" text="Enter Letter" />
+                  <TextField fx:id="inputLetter" layoutY="27.0" prefHeight="23.0" prefWidth="114.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="82.0" prefWidth="82.0">
+               <children>
+                  <Button fx:id="inputButton" alignment="CENTER" layoutX="47.0" layoutY="31.0" mnemonicParsing="false" onAction="#inputButtonClick" text="GUESS" />
+               </children>
+            </AnchorPane>
+         </children>
+      </HBox>
+   </bottom>
+   <left>
+      <AnchorPane prefHeight="361.0" prefWidth="92.0" BorderPane.alignment="CENTER">
+         <children>
+            <Polyline fill="#ffffff00" layoutX="164.0" layoutY="-104.0" points="-46.090293884277344, 203.11740112304688, -46.09030532836914, 192.73773193359375, -117.2663345336914, 192.14981079101562, -117.26634216308594, 348.215576171875, -91.84354400634766, 348.215576171875" strokeType="INSIDE" strokeWidth="3.0" />
+            <CubicCurve fx:id="leftArm" controlX1="-15.725883483886719" controlX2="-15.725883483886719" controlY1="-66.8501968383789" controlY2="7.333160400390625" endX="19.0" endY="-24.019805908203125" fill="#ffffff00" layoutX="114.0" layoutY="155.0" startX="-30.43177032470703" startY="7.333160400390625" stroke="BLACK" />
+            <Circle fx:id="head" fill="#ffffff00" layoutX="117.0" layoutY="119.0" radius="16.0" stroke="BLACK" strokeType="INSIDE" />
+            <Text fx:id="eyes" layoutX="100.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="x x" textAlignment="CENTER" wrappingWidth="34.611846923828125" />
+            <Line fx:id="rightArm" endX="-35.470985412597656" endY="10.84295654296875" layoutX="183.0" layoutY="156.0" startX="-47.137657165527344" startY="-21.019805908203125" />
+            <QuadCurve fx:id="body" controlX="-2.8434982299804688" controlY="-7.3531036376953125" endX="-7.090293884277344" endY="-62.255096435546875" fill="#ffffff00" layoutX="125.0" layoutY="205.0" startX="17.254547119140625" startY="8.823379516601562" stroke="BLACK" strokeType="INSIDE" />
+            <Line fx:id="leftLeg" endX="9.909706115722656" endY="-29.313888549804688" layoutX="108.0" layoutY="200.0" startX="-15.745475769042969" startY="13.333206176757812" />
+         </children>
+      </AnchorPane>
+   </left>
+</BorderPane>
